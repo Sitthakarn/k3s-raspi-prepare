@@ -68,8 +68,11 @@ We need to enable container features in the kernel, edit /boot/cmdline.txt and a
 curl -SLsf https://cli.openfaas.com | sudo sh
 
 ### Forward the gateway to your machine
-kubectl rollout status -n openfaas deploy/gateway
-kubectl port-forward -n openfaas svc/gateway 8080:8080 &
+```
+$ kubectl rollout status -n openfaas deploy/gateway
+
+$ kubectl port-forward -n openfaas svc/gateway 8080:8080 &
+```
 
 ### If basic auth is enabled, you can now log into your gateway:
 PASSWORD=$(kubectl get secret -n openfaas basic-auth -o jsonpath="{.data.basic-auth-password}" | base64 --decode; echo)
